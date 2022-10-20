@@ -7,9 +7,9 @@
  let PROGRESS=document.getElementById("in-progress-tasks");
  let DONE=document.getElementById("done-tasks")
 
-//  var PROGRESS =getElementById("in-progress-tasks");
-//  var DONE =getElementById("done-tasks");
+
 function createTask() {
+    // initialiser task form
     for(let i=0;i<tasks.length;i++){
         if (tasks[i].status=='To Do'){
              TODO.innerHTML +=
@@ -21,7 +21,7 @@ function createTask() {
                  <div class="fw-bolder">${tasks[i].title}</div>
                  <div class="">
                      <div class="">${tasks[i].date}</div>
-                     <div class="fw-bold" title="There is hardly anything more frustrating than having to look for current requirements in tens of comments under the actual description or having to decide which commenter is actually authorized to change the requirements. The goal here is to keep all the up-to-date requirements and details in the main/primary description of a task. Even though the information in comments may affect initial criteria, just update this primary description accordingly.">There is hardly anything more frustrating than having t...</div>
+                     <div class="fw-bold" >${tasks[i].description}</div>
                  </div>
                  <div class=" ">
                      <span class="btn btn-primary py-1 px-3">${tasks[i].priority}</span>
@@ -43,7 +43,7 @@ function createTask() {
              <div class="fw-bolder">${tasks[i].title}</div>
 									<div class="">
 										<div class="">${tasks[i].date}</div>
-										<div class="fw-bold" title="including as many details as possible.">including as many details as possible.</div>
+										<div class="fw-bold">${tasks[i].description}</div>
 									</div>
 									<div class="">
 										<span class="btn btn-primary py-1 px-3">${tasks[i].type}</span>
@@ -65,7 +65,7 @@ function createTask() {
 									<div class="fw-bolder">${tasks[i].title}</div>
 									<div class="">
 										<div class="">${tasks[i].date}</div>
-										<div class="fw-bold" title="as they can be helpful in reproducing the steps that caused the problem in the first place.">as they can be helpful in reproducing the steps that ca...</div>
+										<div class="fw-bold">${tasks[i].description}</div>
 									</div>
 									<div class="">
 										<span class="btn btn-primary p-1 px-3">${tasks[i].type}</span>
@@ -77,12 +77,15 @@ function createTask() {
 } 
 } 
 createTask();
-// initialiser task form
 document.getElementById('saveBtn').addEventListener('click',saveTask)
     // Afficher le boutton save
 
     // Ouvrir modal form
-    
+    function clear(){
+        TODO.innerHTML='';
+        PROGRESS.innerHTML='';
+        DONE.innerHTML='';
+    }
   
 function saveTask() {
 
@@ -100,63 +103,16 @@ function saveTask() {
             'title'         :   TITLE.value,
             'type'          :   TYPE.value,
             'priority'      :   PROPRITY.value,
-            'statuss'        :   STATUS.value,
+            'status'        :   STATUS.value,
             'date'          :   DATE.value,
         }
       
     // Ajoutez object au Array
     tasks.push(Save)
-
-    // refresh tasks
+    clear()
+    createTask()
     
-    var conteur=0;
-    for(let i=0;i<tasks.length;i++){
-        if (tasks[i].statuss=='Done'){
-            DONE.innerHTML+=
-            `<button class="d-flex align-items-center border py-2 ">
-								<div class="mb-3">
-									<i class="fa-regular fa-circle-check text-success fs-4 mb-5"></i> 
-								</div>
-								<div class="text-start ms-3">
-									<div class="fw-bolder">${tasks[i].title}</div>
-									<div class="">
-										<div class="">${tasks[i].date}</div>
-										<div class="fw-bold" title="as they can be helpful in reproducing the steps that caused the problem in the first place.">as they can be helpful in reproducing the steps that ca...</div>
-									</div>
-									<div class="">
-										<span class="btn btn-primary p-1 px-3">${tasks[i].type}</span>
-										<span class="btn btn-secondary  p-1 px-3">${tasks[i].proprity}</span>
-									</div>
-								</div>
-							</button>`
-            
-                    conteur++
-        }
-        else if (tasks[conteur].statuss=='In Progress'){
-            PROGRESS.innerHTML+=
-            `<button class="d-flex align-items-center border py-2 ">
-								<div class="mb-3">
-									<i class="fa-regular fa-circle-check text-success fs-4 mb-5"></i> 
-								</div>
-								<div class="text-start ms-3">
-									<div class="fw-bolder">${tasks[i].title}</div>
-									<div class="">
-										<div class="">${tasks[i].date}</div>
-										<div class="fw-bold" title="as they can be helpful in reproducing the steps that caused the problem in the first place.">as they can be helpful in reproducing the steps that ca...</div>
-									</div>
-									<div class="">
-										<span class="btn btn-primary p-1 px-3">${tasks[i].type}</span>
-										<span class="btn btn-secondary  p-1 px-3">${tasks[i].proprity}</span>
-									</div>
-								</div>
-							</button>`
-                    conteur++;
-
-        }
-    }
-
 }
-
 function editTask(index) {
     // Initialisez task form
 
