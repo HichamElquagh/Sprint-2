@@ -9,6 +9,7 @@
 
 
 function createTask() {
+    clear();
     // initialiser task form
     let conteurTodo=0;
     let conteurProgress=0;
@@ -35,12 +36,12 @@ function createTask() {
                             </div>
                             <div>
                             <i class="fa-solid fa-pen-to-square text-success fs-4 "></i>
-                            <i oncklick="deleteTask(${i})"  class="fa-solid fa-trash fs-4 text-success" ></i> 
+                            <i onclick="deleteTask(${i})"  class="fa-solid fa-trash fs-4 text-success" ></i> 
                         </div>
                     </div>
              </button>`
          conteurTodo++
-         conteurdate++;
+         conteurDate++;
          }
     // }
     // for(let i=0;i<tasks.length;i++){ 
@@ -63,12 +64,12 @@ function createTask() {
                                         </div>
                                         <div>
 										<i class="fa-solid fa-pen-to-square text-success fs-4  "></i>
-                                        <i class="fa-solid fa-trash fs-4 text-success" id="deletetask"></i> 
+                                        <i onclick="deleteTask(${i})" class="fa-solid fa-trash fs-4 text-success" id="deletetask"></i> 
 								</div>
 								</div>
 							</button>`
                             conteurProgress++;
-                            conteurdate++;
+                            conteurDate++;
         }
     // }
 
@@ -92,12 +93,12 @@ function createTask() {
                                         </div>
                                         <div>
 										<i class="fa-solid fa-pen-to-square text-success fs-4  "></i>
-                                        <i class="fa-solid fa-trash fs-4 text-success" id="deletetask"></i> 
+                                        <i onclick="deleteTask(${i})" class="fa-solid fa-trash fs-4 text-success" id="deletetask"></i> 
 								</div>
 								</div>
 							</button>`
                             conteurDone++;
-                            conteurdate++;
+                            conteurDate++;
 } 
 } 
 document.getElementById("to-do-tasks-count").innerHTML=conteurTodo;
@@ -142,7 +143,6 @@ function saveTask() {
       
     // Ajoutez object au Array
     tasks.push(Save)
-    clear()
     createTask()
     
 }
@@ -178,9 +178,10 @@ function updateTask() {
 
 function deleteTask(i) {
     // Get index of task in the array
-    // console.log(i)
-    // tasks.splice(i,1);
-    // createTask();
+    console.log(i)
+     tasks.splice(i,1);
+    
+    createTask();
     // Remove task from array by index splice function
 
     // close modal form
