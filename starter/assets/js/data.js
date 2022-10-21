@@ -85,7 +85,7 @@ var tasks = [
         'priority'      :   'High',
         'status'        :   'In Progress',
         'date'          :   '2022-10-08',
-        'description'   :   `including as many details as possible.`,
+        'description'   :   `If there is a long message to be displayed, just provide a copy for`,
     },
     {
         'title'         :   'Provide access',
