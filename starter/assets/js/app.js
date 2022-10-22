@@ -2,6 +2,7 @@
  * In this file app.js you will find all CRUD functions name.
  * 
  */
+var id_to_update;
 
  let TODO =document.getElementById("to-do-tasks");
  let PROGRESS=document.getElementById("in-progress-tasks");
@@ -26,7 +27,7 @@ function createTask() {
                 <div class="text-start ms-3">
                     <div class="fw-bolder">${tasks[i].title}</div>
                     <div class="">
-                        <div class="">#${conteurDate}created in${tasks[i].date}</div>
+                        <div class=""># ${conteurDate} created in ${tasks[i].date}</div>
                         <div class="fw-bold" >${tasks[i].description}</div>
                     </div>
                     <div class="d-flex justify-content-between">
@@ -35,7 +36,7 @@ function createTask() {
                             <span class="btn btn-secondary py-1 px-3">${tasks[i].type}</span>
                             </div>
                             <div>
-                            <i class="fa-solid fa-pen-to-square text-success fs-4 "></i>
+                            <i onclick="editTask(${i})"  class="fa-solid fa-pen-to-square text-success fs-4 " data-bs-toggle="modal" data-bs-target="#modal" ></i>
                             <i onclick="deleteTask(${i})"  class="fa-solid fa-trash fs-4 text-success" ></i> 
                         </div>
                     </div>
@@ -54,7 +55,7 @@ function createTask() {
 			<div class="text-start ms-3">
              <div class="fw-bolder">${tasks[i].title}</div>
 									<div class="">
-										<div class="">#${conteurDate}created in${tasks[i].date}</div>
+										<div class=""># ${conteurDate} created in ${tasks[i].date}</div>
 										<div class="fw-bold">${tasks[i].description}</div>
 									</div>
 									<div class="d-flex justify-content-between">
@@ -63,8 +64,8 @@ function createTask() {
 										<span class="btn btn-secondary py-1 px-3">${tasks[i].type}</span>
                                         </div>
                                         <div>
-										<i class="fa-solid fa-pen-to-square text-success fs-4  "></i>
-                                        <i onclick="deleteTask(${i})" class="fa-solid fa-trash fs-4 text-success" id="deletetask"></i> 
+										<i onclick="editTask(${i})"  class="fa-solid fa-pen-to-square text-success fs-4 " data-bs-toggle="modal" data-bs-target="#modal" ></i>
+                                        <i onclick="deleteTask(${i})"  class="fa-solid fa-trash fs-4 text-success" ></i>  
 								</div>
 								</div>
 							</button>`
@@ -83,7 +84,7 @@ function createTask() {
 								<div class="text-start ms-3">
 									<div class="fw-bolder">${tasks[i].title}</div>
 									<div class="">
-										<div class=""># ${conteurDate}created in ${tasks[i].date}</div>
+										<div class=""># ${conteurDate} created in ${tasks[i].date}</div>
 										<div class="fw-bold">${tasks[i].description}</div>
 									</div>
 									<div class="d-flex justify-content-between">
@@ -92,8 +93,9 @@ function createTask() {
 										<span class="btn btn-secondary py-1 px-3">${tasks[i].type}</span>
                                         </div>
                                         <div>
-										<i class="fa-solid fa-pen-to-square text-success fs-4  "></i>
-                                        <i onclick="deleteTask(${i})" class="fa-solid fa-trash fs-4 text-success" id="deletetask"></i> 
+										<i onclick="editTask(${i})"  class="fa-solid fa-pen-to-square text-success fs-4 " data-bs-toggle="modal" data-bs-target="#modal" ></i>
+                            <i onclick="deleteTask(${i})"  class="fa-solid fa-trash fs-4 text-success" ></i> 
+								</div>
 								</div>
 								</div>
 							</button>`
@@ -120,8 +122,8 @@ document.getElementById('saveBtn').addEventListener('click',saveTask)
     }
   
 function saveTask() {
-
-
+    
+    
     // Recuperer task attributes a partir les champs input
      let TITLE=document.getElementById("recipient-name"); 
      let TYPE=document.querySelector('.form-check-input:checked');
@@ -144,14 +146,29 @@ function saveTask() {
     // Ajoutez object au Array
     tasks.push(Save)
     createTask()
+    reloadTasks();
+  
     
 }
     // document.getElementById("deletetask").addEventListener('click',function(){
     //     editTask(i);
     // });
-    function editTask() {
-    // Initialisez task form
-     
+function editTask(i) {
+    // Initialisez task for
+    document.getElementById('recipient-name').value =  tasks[i].title;
+    document.getElementById('exampleRadios1').value =  tasks[i].type;
+    document.getElementById('Selectproprity').value =  tasks[i].priority;
+    document.getElementById('selectstatus').value =  tasks[i].status;
+    document.getElementById('date-task').value =  tasks[i].date;
+    document.getElementById('message-text').value =  tasks[i].description;
+    id_to_update = i;
+    
+    // document.getElementById('UpdateBtn').addEventListener('click',function(){
+    //     updateTask(i);
+
+    // });
+    
+
     // Affichez updates
 
     // Delete Button
@@ -164,24 +181,28 @@ function saveTask() {
 }
 
 function updateTask() {
+
     // GET TASK ATTRIBUTES FROM INPUTS
-
+    
     // Créez task object
-
     // Remplacer ancienne task par nouvelle task
-
+    tasks[id_to_update].title = document.getElementById('recipient-name').value;
+    tasks[id_to_update].type = document.getElementById('exampleRadios1').value;
+    tasks[id_to_update].priority = document.getElementById('Selectproprity').value;
+    tasks[id_to_update].status = document.getElementById('selectstatus').value;
+    tasks[id_to_update].date = document.getElementById('date-task').value;
+    tasks[id_to_update].description = document.getElementById('message-text').value;
     // Fermer Modal form
-
+    createTask();    
+    
     // Refresh tasks
     
 }
 
 function deleteTask(i) {
     // Get index of task in the array
-    console.log(i)
      tasks.splice(i,1);
-    
-    createTask();
+     createTask();
     // Remove task from array by index splice function
 
     // close modal form
@@ -197,6 +218,6 @@ function initTaskForm() {
 
 function reloadTasks() {
     // Remove tasks elements
-
+  document.getElementById('form').reset();
     // Set Task count
 }
