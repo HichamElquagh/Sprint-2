@@ -34,7 +34,7 @@
 				</div>
 				
 				<div class="mt-4">
-					<button class="btn btn-success px-4 rounded-pill" id="btntask" data-bs-toggle="modal" data-bs-target="#modal" ><i class="fa fa-plus"></i> Add Task </a>
+					<button onclick="clearForm(); hideBottun();" class="btn btn-success px-4 rounded-pill" id="btntask" data-bs-toggle="modal" data-bs-target="#modal" ><i class="fa fa-plus"></i> Add Task </a>
 				</div>
 			</div>
 			
@@ -319,7 +319,7 @@
 					</label>
 				</div>
 				<div class="form-check">
-					<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="Bug">
+					<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="Bug">
 					<label class="form-check-label" for="exampleRadios2">
 					  Bug
 					</label>
@@ -348,10 +348,10 @@
 			  </form>
 			</div>
 			<div class="modal-footer">
-			  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-			  <button type="submit"  class="btn btn-primary" data-bs-dismiss="modal" id="saveBtn"">Save</button>
-			  <button type="submit"  class="btn btn-success" data-bs-dismiss="modal"  onclick="updateTask(); reloadTasks();">Update</button>
-			  
+			  <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+			  <button type="submit"  class="btn btn-primary" data-bs-dismiss="modal" id="saveBtn">Save</button>
+			  <button type="submit"  class="btn btn-success" id="updateBtn" data-bs-dismiss="modal"  onclick="updateTask(); reloadTasks(); hideBottun();">Update</button>
+			   -->
 			</div>
 		  </div>
 		</div>

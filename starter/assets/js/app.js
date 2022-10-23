@@ -2,12 +2,24 @@
  * In this file app.js you will find all CRUD functions name.
  * 
  */
+ 
+
+ function hideBottun() {
+    document.querySelector('.modal-footer').innerHTML=
+    ` <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+    <button type="submit"  class="btn btn-primary" onclick="saveTask();" data-bs-dismiss="modal" id="saveBtn" >Save</button>
+    `
+
+    
+}
+
+ 
  var id_to_update;
  let TODO =document.getElementById("to-do-tasks");
  let PROGRESS=document.getElementById("in-progress-tasks");
  let DONE=document.getElementById("done-tasks")
 
-function createTask() {
+function showTask() {
     clear();
     // initialiser task form
     let conteurTodo=0;
@@ -88,7 +100,7 @@ function createTask() {
                                 <span class="btn btn-primary py-1 px-3">${tasks[i].priority}</span>
                                 <span class="btn btn-secondary py-1 px-3">${tasks[i].type}</span>
                             </div>
-                            <div>
+                            <div class="" >
                                 <i onclick="editTask(${i})"  class="fa-solid fa-pen-to-square text-success fs-4"  data-bs-toggle="modal" data-bs-target="#modal" ></i>
                                 <i onclick="deleteTask(${i})"  class="fa-solid fa-trash fs-4 text-success" data-bs-toggle="tooltip" title="delete" ></i> 
                             </div>
@@ -105,16 +117,16 @@ document.getElementById("in-progress-tasks-count").innerHTML=conteurProgress;
 document.getElementById("done-tasks-count").innerHTML=conteurDone;
 
 }      
-createTask();
+showTask();
     // Afficher le boutton save
-    document.getElementById('saveBtn').addEventListener('click',saveTask)
     // Ouvrir modal form
     function clear(){
         TODO.innerHTML='';
         PROGRESS.innerHTML='';
         DONE.innerHTML='';
     }
-  
+
+
 function saveTask() {
     // Recuperer task attributes a partir les champs input
      let TITLE=document.getElementById("recipient-name"); 
@@ -137,18 +149,25 @@ function saveTask() {
       
     // Ajoutez object au Array
     tasks.push(Save)
-    createTask()
-    reloadTasks();
+    showTask()
+    clearForm();
   
     
 }
-    // document.getElementById("deletetask").addEventListener('click',function(){
-    //     editTask(i);
-    // });
+
 function editTask(i) {
+    document.querySelector('.modal-footer').innerHTML=
+        `<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit"  class="btn btn-success" id="updateBtn" data-bs-dismiss="modal"  onclick="updateTask(); clearForm();">Update</button>
+        `
     // Initialisez task for
+    if(tasks[i].type=='Feature'){
+        document.getElementById('exampleRadios1').checked = true ;
+    }
+    else {
+        document.getElementById('exampleRadios2').checked = true ;
+    }
     document.getElementById('recipient-name').value =  tasks[i].title;
-    document.getElementById('exampleRadios1').value =  tasks[i].type;
     document.getElementById('Selectproprity').value =  tasks[i].priority;
     document.getElementById('selectstatus').value =  tasks[i].status;
     document.getElementById('date-task').value =  tasks[i].date;
@@ -179,7 +198,7 @@ function updateTask() {
     tasks[id_to_update].date = document.getElementById('date-task').value;
     tasks[id_to_update].description = document.getElementById('message-text').value;
     // Fermer Modal form
-    createTask();    
+    showTask();    
     
     // Refresh tasks
     
@@ -188,7 +207,7 @@ function updateTask() {
 function deleteTask(i) {
     // Get index of task in the array
      tasks.splice(i,1);
-     createTask();
+     showTask();
     // Remove task from array by index splice function
 
     // close modal form
@@ -202,7 +221,7 @@ function initTaskForm() {
     // Hide all action buttons
 }
 
-function reloadTasks() {
+function clearForm() {
     // Remove tasks elements
   document.getElementById('form').reset();
     // Set Task count
