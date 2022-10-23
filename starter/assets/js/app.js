@@ -8,9 +8,7 @@
     document.querySelector('.modal-footer').innerHTML=
     ` <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
     <button type="submit"  class="btn btn-primary" onclick="saveTask();" data-bs-dismiss="modal" id="saveBtn" >Save</button>
-    `
-
-    
+    `   
 }
 
  
@@ -34,7 +32,7 @@ function showTask() {
                     <div class="mb-5">
                         <i class="fa-regular fa-circle-question text-success fs-4 mb-3  "></i>
                     </div>
-                    <div class="text-start ms-3">
+                    <div class="text-start w-100 ms-3">
                         <div class="fw-bolder">${tasks[i].title}</div>
                         <div class="">
                             <div class=""># ${conteurDate} created in ${tasks[i].date}</div>
@@ -62,7 +60,7 @@ function showTask() {
 			        <div class="mb-3">
 			            <i class="fa-sharp fa-solid fa-circle-notch text-success fa-rotate-90  fs-4 mb-5"></i>
 				    </div>
-			        <div class="text-start ms-3">
+			        <div class="text-start w-100 ms-3">
                         <div class="fw-bolder">${tasks[i].title}</div>
                             <div class="">
                                 <div class=""># ${conteurDate} created in ${tasks[i].date}</div>
@@ -89,7 +87,7 @@ function showTask() {
                     <div class="mb-3">
                         <i class="fa-regular fa-circle-check text-success fs-4 mb-5"></i> 
                     </div>
-                    <div class="text-start ms-3">
+                    <div class="text-start w-100 ms-3">
                         <div class="fw-bolder">${tasks[i].title}</div>
                         <div class="">
                             <div class=""># ${conteurDate} created in ${tasks[i].date}</div>
@@ -100,7 +98,7 @@ function showTask() {
                                 <span class="btn btn-primary py-1 px-3">${tasks[i].priority}</span>
                                 <span class="btn btn-secondary py-1 px-3">${tasks[i].type}</span>
                             </div>
-                            <div class="" >
+                            <div class="">
                                 <i onclick="editTask(${i})"  class="fa-solid fa-pen-to-square text-success fs-4"  data-bs-toggle="modal" data-bs-target="#modal" ></i>
                                 <i onclick="deleteTask(${i})"  class="fa-solid fa-trash fs-4 text-success" data-bs-toggle="tooltip" title="delete" ></i> 
                             </div>
@@ -116,7 +114,8 @@ document.getElementById("to-do-tasks-count").innerHTML=conteurTodo;
 document.getElementById("in-progress-tasks-count").innerHTML=conteurProgress;
 document.getElementById("done-tasks-count").innerHTML=conteurDone;
 
-}      
+}
+      
 showTask();
     // Afficher le boutton save
     // Ouvrir modal form
