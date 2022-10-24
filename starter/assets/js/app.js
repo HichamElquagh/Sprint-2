@@ -197,9 +197,8 @@ function updateTask() {
     tasks[id_to_update].date = document.getElementById('date-task').value;
     tasks[id_to_update].description = document.getElementById('message-text').value;
     // Fermer Modal form
-    showTask();    
-    
     // Refresh tasks
+    showTask();    
     
 }
 
