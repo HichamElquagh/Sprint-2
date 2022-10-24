@@ -1,4 +1,4 @@
-# Sprint-2
+# Maquette Sprint-2 
 
 Version desktop: https://www.figma.com/file/iYBoPwZ8WaqZpm019A4VPd/Untitled?node-id=0%3A1
 
