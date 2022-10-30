@@ -113,12 +113,14 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
+				
 				<form action="scripts.php" method="POST" id="form">
 					<div class="modal-body">
 					<!-- <div class="form-group">
 							<label for="recipient-name" class="col-form-label" id="id">ID</label>
 							<input type="text" class="form-control" id="recipient-name" name="id">
 						</div> -->
+						
 						<div class="form-group">
 							<label for="recipient-name" class="col-form-label" id="Title">TITLE</label>
 							<input type="text" class="form-control" id="recipient-name" name="TITLE">
@@ -161,9 +163,6 @@
 						<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
 						<button type="submit" name="save" class="btn btn-primary" data-bs-dismiss="modal" id="saveBtn" >Save</button>
-						
-						<button type="button" class="btn btn-danger" name="delete">Delete</button>	
-						
 						</div>
 				</form>
 			</div>
@@ -174,7 +173,7 @@
 	<script src="assets/js/vendor.min.js"></script>
 	<script src="assets/js/app.min.js"></script>
 	<script src="assets/js/data.js"></script>
-	<!-- <script src="assets/js/app.js"></script> -->
+	<script src="assets/js/app.js"></script>
 	<!-- ================== END core-js ================== -->
 </body>
 </html>

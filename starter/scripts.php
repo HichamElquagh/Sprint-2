@@ -7,22 +7,21 @@
 
     //ROUTING
     if(isset($_POST['save']))        saveTask();
-    if(isset($_POST['update']))      updateTask();
-    if(isset($_POST['delete']))      deleteTask();
+    if(isset($_GET['update']))      updateTask();
+    // if(isset($_POST['Delete']))      deleteTask();
+    if(isset($_GET['delete']))       deleteTask();
+      
+   
     
 
     function getTasks($num)  
     {
         global $conn ;
-
         //CODE HERE 
-
-         
-
         $sql = "SELECT  tasks.id ,tasks.title,tasks.type_id,tasks.priority_id,tasks.status_id,tasks.task_datetime,tasks.description,priorities.name AS priorities ,
         statuses.name AS statues ,types.name AS types
-                    FROM tasks,types,priorities,statuses
-                    WHERE tasks.type_id=types.id AND tasks.priority_id=priorities.id AND tasks.status_id=statuses.id";
+        FROM tasks,types,priorities,statuses
+        WHERE tasks.type_id=types.id AND tasks.priority_id=priorities.id AND tasks.status_id=statuses.id";
            
 
         $result = mysqli_query($conn,$sql) ;
@@ -49,7 +48,7 @@
                             </div>
                             <div>
                                 <i class="fa-solid fa-pen-to-square text-success fs-4 " data-bs-toggle="modal" data-bs-target="#modal" ></i>
-                                <i class="fa-solid fa-trash fs-4 text-success" name="delete" data-bs-toggle="tooltip" title="delete" ></i> 
+                                <a href="index.php?delete='.$row['id'].'"><i class="fa-solid fa-trash fs-4 text-success" data-bs-toggle="tooltip" ></i></a>
                             </div>
                         </div>
                     </div>
@@ -76,7 +75,7 @@
                             </div>
                             <div>
                                 <i class="fa-solid fa-pen-to-square text-success fs-4 " data-bs-toggle="modal" data-bs-target="#modal" ></i>
-                                <i class="fa-solid fa-trash fs-4 text-success" name="delete" data-bs-toggle="tooltip" title="delete" ></i> 
+                                <a href="index.php?delete='.$row['id'].'"><i class="fa-solid fa-trash fs-4 text-success" data-bs-toggle="tooltip" ></i></a>
                             </div>
                         </div>
                     </div>
@@ -84,7 +83,7 @@
                 ';
 
                  }     
-                if($row['statues']=='Done'&& $num==3){
+                if($row['statues']=='Done' && $num==3){
                 $icon='fa-regular fa-circle-check';
                 echo ' 
                 <button class="d-flex align-items-center border py-2">
@@ -103,21 +102,22 @@
                                 <span class="btn btn-secondary py-1 px-3">'.$row['types'].'</span>
                             </div>
                             <div>
-                                <i class="fa-solid fa-pen-to-square text-success fs-4 " data-bs-toggle="modal" data-bs-target="#modal" ></i>
-                                <i class="fa-solid fa-trash fs-4 text-success" name="delete" data-bs-toggle="tooltip" title="delete" ></i> 
+                                <a href="index.php?update='.$row['id'].'"><i class="fa-solid fa-pen-to-square text-success fs-4 " data-bs-toggle="modal" data-bs-target="#modal" ></i></a>
+                                <a href="index.php?delete='.$row['id'].'"><i class="fa-solid fa-trash fs-4 text-success" data-bs-toggle="tooltip" ></i></a>
                             </div>
                         </div>
                     </div>
                 </button>  
-                ';
-                 }  
-            };
+                ';   
         }
+    }
+}
+
         //SQL SELECT
         // echo "Fetch all tasks";
     }
 
-
+    
     function saveTask()
     {
         //CODE HERE
@@ -131,9 +131,6 @@
         require 'database.php';
         $sql =  "INSERT INTO tasks (`title`, `type_id`, `priority_id`, `status_id`, `task_datetime`,`description`)
         VALUES ('$TITLE','$TYPE','$PRIOIRTY','$STATUS','$DATETIME','$DESCRIPTION')"; 
-        // if(mepty($TITLE)||mepty($TYPE)||mepty($PRIOIRTY)||mepty($STATUS)||mepty($DATETIME)||mepty($DESCRIPTION)){
-            // echo "please fill all the fieled ";
-        // } 
         $result = mysqli_query($conn, $sql);
     
         $_SESSION['message'] = "Task has been added successfully !";
@@ -145,22 +142,25 @@
     function updateTask()
     {
         //CODE HERE
-
+        global $conn;
+        // header('location:index.php');
         //SQL UPDATE
 
         $_SESSION['message'] = "Task has been updated successfully !";
-		header('location: index.php');
+		
     }
 
-    function deleteTask($id)
+    function deleteTask()
     {
         //CODE HERE
-       "DELETE FROM task WHERE id='$id'";
-        // if($id==id)
-        
+        global $conn;
+        $id=$_GET['delete'];
+        $sql="DELETE FROM tasks WHERE id=$id";
+        $result=mysqli_query($conn,$sql);
+        header('location: index.php');
         //SQL DELETE
         $_SESSION['message'] = "Task has been deleted successfully !";
-		header('location: index.php');
+		
     }
 
 ?>
