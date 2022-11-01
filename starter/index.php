@@ -1,5 +1,6 @@
 <?php
     include('scripts.php');
+	global $conteurtask;
 ?>
 
 
@@ -17,6 +18,7 @@
 	<link href="assets/css/vendor.min.css" rel="stylesheet" />
 	<link href="assets/css/default/app.min.css" rel="stylesheet" />
 	<link href="assets/css/style.css" rel="stylesheet" />
+	
 	<!-- ================== END core-css ================== -->
 </head>
 <body>
@@ -47,7 +49,7 @@
 				<div class="col-lg-4 col-md-6 col-sm-12">
 					<div class="bg-dark rounded-top mb-2 ">
 						<div class="px-3">
-							<h4 class="bg-dark text-white fw-normal mb-2 ">To do (<span id="to-do-tasks-count">0</span>)</h4>
+							<h4 class="bg-dark text-white fw-normal mb-2 " >To do (<span id="to-do-tasks-count"><?php counterTasks(1) ?></span>)</h4>
 
 						</div>
 						<div class="d-flex flex-column " id="to-do-tasks" >
@@ -63,7 +65,7 @@
 				<div class="col-lg-4 col-md-6 col-sm-12">
 					<div class="bg-dark rounded-top mb-2">
 						<div class="px-3">
-							<h4 class="bg-dark text-white fw-normal">In Progress (<span id="in-progress-tasks-count"></span>)</h4>
+							<h4 class="bg-dark text-white fw-normal">In Progress (<span id="in-progress-tasks-count"><?php counterTasks(2) ?></span>)</h4>
 
 						</div>
 						<div class="d-flex  flex-column " id="in-progress-tasks" >
@@ -79,7 +81,7 @@
 				<div class="col-lg-4 col-md-6 col-sm-12">
 					<div class="bg-dark rounded-top ">
 						<div class="px-3 ">
-							<h4 class="bg-dark text-white fw-normal ">Done (<span id="done-tasks-count"></span>)</h4>
+							<h4 class="bg-dark text-white fw-normal ">Done (<span id="done-tasks-count"><?php counterTasks(3)?></span>)</h4>
 
 						</div>
 						<div class=" d-flex flex-column " id="done-tasks">
@@ -118,7 +120,7 @@
 					<div class="modal-body">
 					<!-- <div class="form-group">
 							<label for="recipient-name" class="col-form-label" id="id">ID</label>
-							<input type="text" class="form-control" id="recipient-name" name="id">
+							<input type="" class="form-control" id="recipient-name" name="ID" value=>
 						</div> -->
 						
 						<div class="form-group">
@@ -174,6 +176,8 @@
 	<script src="assets/js/app.min.js"></script>
 	<script src="assets/js/data.js"></script>
 	<script src="assets/js/app.js"></script>
+
+
 	<!-- ================== END core-js ================== -->
 </body>
 </html>
