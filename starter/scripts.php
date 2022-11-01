@@ -49,8 +49,8 @@
                                 <span class="btn btn-secondary py-1 px-3">'.$row['types'].'</span>
                             </div>
                             <div>
-                               <a href="update.php?Update='.$row['id'].'"> <i class="fa-solid fa-pen-to-square text-success fs-4 " data-bs-toggle="modal" data-bs-target="#modal" ></i></a>
-                                <a href="index.php?delete='.$row['id'].'"><i class="fa-solid fa-trash fs-4 text-danger" data-bs-toggle="tooltip" ></i></a>
+                                <a href="update.php?Update='.$row['id'].'"> <i class="fa-solid fa-pen-to-square text-success fs-4 " data-bs-toggle="modal" data-bs-target="#modal" ></i></a>
+                                <i onclick="confirmDelete('.$row['id'].');" class="fa-solid fa-trash fs-4 text-danger" data-bs-toggle="tooltip" id="normalIcon" ></i>
                             </div>
                         </div>
                     </div>
@@ -68,7 +68,7 @@
                     <div class="text-start w-100 ms-3">
                         <div class="fw-bolder">'.$row['title'].'</div>
                         <div class="">
-                            <div class=""> '.$conteurdate.' #  # created in '.$row['task_datetime'].'</div>
+                            <div class=""> '.$conteurdate.'  # created in '.$row['task_datetime'].'</div>
                             <div class="fw-bold" >'.$row['description'].'</div>
                         </div>
                         <div class="d-flex justify-content-between">
@@ -78,7 +78,7 @@
                             </div>
                             <div>
                                 <a href="update.php?Update='.$row['id'].'"><i class="fa-solid fa-pen-to-square text-success fs-4 " data-bs-toggle="modal" data-bs-target="#modal" ></i></a>
-                                <a href="index.php?delete='.$row['id'].'"><i class="fa-solid fa-trash fs-4 text-danger" data-bs-toggle="tooltip" ></i></a>
+                                <i onclick="confirmDelete('.$row['id'].');" class="fa-solid fa-trash fs-4 text-danger" data-bs-toggle="tooltip" id="normalIcon" ></i>
                             </div>
                         </div>
                     </div>
@@ -107,8 +107,7 @@
                             </div>
                             <div>
                                 <a href="update.php?Update='.$row['id'].'"> <i class="fa-solid fa-pen-to-square text-success fs-4 " data-bs-toggle="modal" data-bs-target="#modall" ></i></a>
-                                <i onclick="confirmDelete();" class="fa-solid fa-trash fs-4 text-danger" data-bs-toggle="tooltip" id="normalIcon" ></i>
-                                <a href="index.php?delete='.$row['id'].'"id="hiddeIcon"><i class="fa-solid fa-trash fs-4 text-danger"  hidden data-bs-toggle="tooltip" ></i></a>
+                                <i onclick="confirmDelete('.$row['id'].');" class="fa-solid fa-trash fs-4 text-danger" data-bs-toggle="tooltip" id="normalIcon" ></i>
                             </div>
                         </div>
                     </div>

@@ -84,7 +84,7 @@
 							<h4 class="bg-dark text-white fw-normal ">Done (<span id="done-tasks-count"><?php counterTasks(3)?></span>)</h4>
 
 						</div>
-						<div class=" d-flex flex-column " id="done-tasks">
+						<div class=" d-flex flex-column" id="done-tasks">
 							<!-- DONE TASKS HERE -->
 							<?php
 							//PHP CODE HERE
