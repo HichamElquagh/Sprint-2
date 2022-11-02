@@ -1,26 +1,19 @@
 <?php 
  include('database.php');
-
- function RemplaireForm()
-    {
-        global $conn;
-        
-        //CODE HERE
-       
+    //  j'ai crée une nouvelle page et j'ai envoyer le id par methode de GET  pour remplir le model 
+    if(isset($_GET['Update'])){
         $id=$_GET['Update'];
         $sql=" SELECT * FROM tasks WHERE tasks.id=$id ";
         $result=mysqli_query($conn,$sql);
         $rows=mysqli_fetch_assoc($result);
-        return $rows ;
-    }
-    $rows =  RemplaireForm() ;
-    $id= $rows['id'];
-    $title= $rows['title'];
-    $type= $rows['type_id'];
-    $priority = $rows['priority_id'];
-    $status= $rows['status_id'];
-    $datetime= $rows['task_datetime'];
-    $description= $rows['description'];
+        // l'affectation des values de tableau database a des variables 'rows'
+        $id= $rows['id'];
+        $title= $rows['title'];
+        $type= $rows['type_id'];
+        $priority = $rows['priority_id'];
+        $status= $rows['status_id'];
+        $datetime= $rows['task_datetime'];
+        $description= $rows['description'];
 ?>
 <!DOCTYPE html>
 <html lang="en" >
@@ -39,9 +32,7 @@
 	<!-- ================== END core-css ================== -->
 </head>
 <body>
-    
        <!-- TASK MODAL   -->
-       <img src="img\" class="img-thumbnail" alt="...">
        <div class="modal-dialog" role="document">
 		    <div class="modal-content">
 				<div class="modal-header">
@@ -90,12 +81,12 @@
                                 <input type="datetime-local" value="<?php echo $datetime; ?>" class="form-control" id="date-task" name="DATETIME" placeholder="Please Select">
                             </div>
                             <div class="form-group">
-                                <label for="message-text" class="col-form-label">Description</label>
+                                <label for="message-text" class="col-form-label" >Description</label>
                                 <textarea class="form-control" value="" id="message-text" name="DESCRIPTION"`require><?php echo $description; ?></textarea>
                             </div>
                         </div>
                             <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" name="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                             <button type="submit" name="Update" class="btn btn-primary" data-bs-dismiss="modal" id="saveBtn" >update</button>
                             </div>
                     </form>
@@ -103,21 +94,8 @@
             </div>
         
         
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <?php }else header('location: index.php'); ?>
+    
     <!-- ================== BEGIN core-js ================== -->
 	<script src="assets/js/vendor.min.js"></script>
 	<script src="assets/js/app.min.js"></script>

@@ -8,14 +8,13 @@
     //ROUTING
     if(isset($_POST['save']))        saveTask();
     if(isset($_POST['Update']))      updateTask();
-    // if(isset($_POST['Delete']))      deleteTask();
     if(isset($_GET['delete']))       deleteTask();
-      
-   
-    
+    if(isset($_POST['cancel'])){       
+        header('location: index.php');
+    }
      
-    function getTasks($num)  
-    {
+    
+    function getTasks($num)  {
         $conteurdate=0;
         global $conn ;
         //CODE HERE 
@@ -27,98 +26,95 @@
 
         $result = mysqli_query($conn,$sql) ;
         if ($result){
-
             while($row=mysqli_fetch_assoc($result)){
                 if($row['statues']=='To do' && $num==1){
                     $conteurdate++;
                     $icon='fa-regular fa-circle-question';
                     echo ' 
-                <button class="d-flex align-items-center border py-2">
-                    <div class="mb-5">
-                        <i class=" '.$icon.' text-success fs-4 mb-3"></i>
-                    </div>
-                    <div class="text-start w-100 ms-3">
-                        <div class="fw-bolder">'.$row['title'].'</div>
-                        <div class="">
-                            <div class=""> '.$conteurdate.' # created in '.$row['task_datetime'].'</div>
-                            <div class="fw-bold" >'.$row['description'].'</div>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <div>
-                                <span class="btn btn-primary py-1 px-3">'.$row['priorities'].'</span>
-                                <span class="btn btn-secondary py-1 px-3">'.$row['types'].'</span>
+                        <button class="d-flex align-items-center border py-2">
+                            <div class="mb-5">
+                                <i class=" '.$icon.' text-success fs-4 mb-3"></i>
                             </div>
-                            <div>
-                                <a href="update.php?Update='.$row['id'].'"> <i class="fa-solid fa-pen-to-square text-success fs-4 " data-bs-toggle="modal" data-bs-target="#modal" ></i></a>
-                                <i onclick="confirmDelete('.$row['id'].');" class="fa-solid fa-trash fs-4 text-danger" data-bs-toggle="tooltip" id="normalIcon" ></i>
+                            <div class="text-start w-100 ms-3">
+                                <div class="fw-bolder">'.$row['title'].'</div>
+                                <div class="">
+                                    <div class=""> '.$conteurdate.' # created in '.$row['task_datetime'].'</div>
+                                    <div class="fw-bold" >'.$row['description'].'</div>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <span class="btn btn-primary py-1 px-3">'.$row['priorities'].'</span>
+                                        <span class="btn btn-secondary py-1 px-3">'.$row['types'].'</span>
+                                    </div>
+                                    <div>
+                                        <a href="update.php?Update='.$row['id'].'"> <i class="fa-solid fa-pen-to-square text-success fs-4 " data-bs-toggle="modal" data-bs-target="#modal" ></i></a>
+                                        <i onclick="confirmDelete('.$row['id'].');" class="fa-solid fa-trash fs-4 text-danger" data-bs-toggle="tooltip" id="normalIcon" ></i>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </button>  
+                        </button>  
                 ';
                 } 
                 if($row['statues']=='In Progress' && $num==2){
                     $conteurdate++;
                     $icon='fa-sharp fa-solid fa-circle-notch';
                     echo ' 
-                <button class="d-flex align-items-center border py-2">
-                    <div class="mb-5">
-                        <i class=" '.$icon.' text-success fs-4 mb-3"></i>
-                    </div>
-                    <div class="text-start w-100 ms-3">
-                        <div class="fw-bolder">'.$row['title'].'</div>
-                        <div class="">
-                            <div class=""> '.$conteurdate.'  # created in '.$row['task_datetime'].'</div>
-                            <div class="fw-bold" >'.$row['description'].'</div>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <div>
-                                <span class="btn btn-primary py-1 px-3">'.$row['priorities'].'</span>
-                                <span class="btn btn-secondary py-1 px-3">'.$row['types'].'</span>
+                        <button class="d-flex align-items-center border py-2">
+                            <div class="mb-5">
+                                <i class=" '.$icon.' text-success fs-4 mb-3"></i>
                             </div>
-                            <div>
-                                <a href="update.php?Update='.$row['id'].'"><i class="fa-solid fa-pen-to-square text-success fs-4 " data-bs-toggle="modal" data-bs-target="#modal" ></i></a>
-                                <i onclick="confirmDelete('.$row['id'].');" class="fa-solid fa-trash fs-4 text-danger" data-bs-toggle="tooltip" id="normalIcon" ></i>
+                            <div class="text-start w-100 ms-3">
+                                <div class="fw-bolder">'.$row['title'].'</div>
+                                <div class="">
+                                    <div class=""> '.$conteurdate.'  # created in '.$row['task_datetime'].'</div>
+                                    <div class="fw-bold" >'.$row['description'].'</div>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <span class="btn btn-primary py-1 px-3">'.$row['priorities'].'</span>
+                                        <span class="btn btn-secondary py-1 px-3">'.$row['types'].'</span>
+                                    </div>
+                                    <div>
+                                        <a href="update.php?Update='.$row['id'].'"><i class="fa-solid fa-pen-to-square text-success fs-4 " data-bs-toggle="modal" data-bs-target="#modal" ></i></a>
+                                        <i onclick="confirmDelete('.$row['id'].');" class="fa-solid fa-trash fs-4 text-danger" data-bs-toggle="tooltip" id="normalIcon" ></i>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </button>  
-                ';
-                
-                 }     
+                        </button>  
+                        ';
+                }     
                 if($row['statues']=='Done' && $num==3){
                     $conteurdate++;
                 $icon='fa-regular fa-circle-check';
                 echo ' 
-                <button class="d-flex align-items-center border py-2">
-                    <div class="mb-5">
-                        <i class=" '.$icon.' text-success fs-4 mb-3"></i>
-                    </div>
-                    <div class="text-start w-100 ms-3">
-                        <div class="fw-bolder">'.$row['title'].'</div>
-                        <div class="">
-                            <div class="">'.$conteurdate.' #created in '.$row['task_datetime'].'</div>
-                            <div class="fw-bold" >'.$row['description'].'</div>
+                    <button class="d-flex align-items-center border py-2">
+                        <div class="mb-5">
+                            <i class=" '.$icon.' text-success fs-4 mb-3"></i>
                         </div>
-                        <div class="d-flex justify-content-between">
-                            <div>
-                                <span class="btn btn-primary py-1 px-3">'.$row['priorities'].'</span>
-                                <span class="btn btn-secondary py-1 px-3">'.$row['types'].'</span>
+                        <div class="text-start w-100 ms-3">
+                            <div class="fw-bolder">'.$row['title'].'</div>
+                            <div class="">
+                                <div class="">'.$conteurdate.' #created in '.$row['task_datetime'].'</div>
+                                <div class="fw-bold" >'.$row['description'].'</div>
                             </div>
-                            <div>
-                                <a href="update.php?Update='.$row['id'].'"> <i class="fa-solid fa-pen-to-square text-success fs-4 " data-bs-toggle="modal" data-bs-target="#modall" ></i></a>
-                                <i onclick="confirmDelete('.$row['id'].');" class="fa-solid fa-trash fs-4 text-danger" data-bs-toggle="tooltip" id="normalIcon" ></i>
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <span class="btn btn-primary py-1 px-3">'.$row['priorities'].'</span>
+                                    <span class="btn btn-secondary py-1 px-3">'.$row['types'].'</span>
+                                </div>
+                                <div>
+                                    <a href="update.php?Update='.$row['id'].'"> <i class="fa-solid fa-pen-to-square text-success fs-4 " data-bs-toggle="modal" data-bs-target="#modall" ></i></a>
+                                    <i onclick="confirmDelete('.$row['id'].');" class="fa-solid fa-trash fs-4 text-danger" data-bs-toggle="tooltip" id="normalIcon" ></i>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </button>  
-                '; 
+                    </button>  
+                    '; 
+                }
+            }
         }
-    }
-}
-
         //SQL SELECT
-        // echo "Fetch all tasks";
+            // echo "Fetch all tasks";
     }
 
     
@@ -142,7 +138,7 @@
     }
 
 
-    function counterTasks($status){
+    function counterTasks($status) {
         global $conn;
         $request ="SELECT * FROM tasks WHERE status_id='$status'";
         $result=mysqli_query($conn,$request);
@@ -151,8 +147,7 @@
     }
 
 
-    function updateTask(){
-
+    function updateTask() {
 
     global $conn;
     $id=$_POST['id'];
@@ -170,8 +165,7 @@
     }
     
 
-    function deleteTask()
-    {
+    function deleteTask()  {
         //CODE HERE
             global $conn;
             $id=$_GET['delete'];

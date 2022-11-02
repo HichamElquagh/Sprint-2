@@ -1,6 +1,5 @@
 <?php
     include('scripts.php');
-	global $conteurtask;
 ?>
 
 
@@ -118,24 +117,19 @@
 				
 				<form action="scripts.php" method="POST" id="form">
 					<div class="modal-body">
-					<!-- <div class="form-group">
-							<label for="recipient-name" class="col-form-label" id="id">ID</label>
-							<input type="" class="form-control" id="recipient-name" name="ID" value=>
-						</div> -->
-						
 						<div class="form-group">
-							<label for="recipient-name" class="col-form-label" id="Title">TITLE</label>
-							<input type="text" class="form-control" id="recipient-name" name="TITLE">
+							<label for="recipient-name" class="col-form-label" id="Title" >TITLE</label>
+							<input type="text" class="form-control" id="recipient-name" name="TITLE" >
 						</div>
 						<h6 class="form-title my-3" id="exampleModalLabel">Type</h6>
 						<div class="form-check">
-							<input class="form-check-input" type="radio" name="TYPE" id="exampleRadios1" value="1" checked>
-							<label class="form-check-label" for="exampleRadios1">
+							<input class="form-check-input" type="radio" name="TYPE" id="exampleRadios1" value="1">
+							<label class="form-check-label" for="exampleRadios1" >
 							Feature
 							</label>
 						</div>
 						<div class="form-check">
-							<input class="form-check-input" type="radio" name="TYPE" id="exampleRadios1" value="2">
+							<input class="form-check-input" type="radio" name="TYPE" id="exampleRadios1" value="2" >
 							<label class="form-check-label" for="exampleRadios2">
 							Bug
 							</label>
@@ -159,12 +153,12 @@
 						</div>
 						<div class="form-group">
 							<label for="message-text" class="col-form-label">Description</label>
-							<textarea class="form-control" id="message-text" name="DESCRIPTION"`require></textarea>
+							<textarea class="form-control" id="message-text" name="DESCRIPTION"`require ></textarea>
 						</div>
 					</div>
 						<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-						<button type="submit" name="save" class="btn btn-primary" data-bs-dismiss="modal" id="saveBtn" >Save</button>
+						<button type="submit"  name="save" class="btn btn-primary" data-bs-dismiss="modal" id="saveBtn" >Save</button>
 						</div>
 				</form>
 			</div>
