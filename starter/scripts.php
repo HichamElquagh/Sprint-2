@@ -26,7 +26,7 @@
 
         $result = mysqli_query($conn,$sql) ;
         if ($result){
-            while($row=mysqli_fetch_assoc($result)){
+            while($row=mysqli_fetch_assoc($result)){ 
                 if($row['statues']=='To do' && $num==1){
                     $conteurdate++;
                     $icon='fa-regular fa-circle-question';
@@ -118,8 +118,7 @@
     }
 
     
-    function saveTask()
-    {
+    function saveTask() {
         //CODE HERE
         $TITLE=$_POST['TITLE'];
         $TYPE=$_POST['TYPE'];
@@ -167,13 +166,13 @@
 
     function deleteTask()  {
         //CODE HERE
-            global $conn;
-            $id=$_GET['delete'];
-            $sql="DELETE FROM tasks WHERE id=$id";
-            $result=mysqli_query($conn,$sql);
-            header('location: index.php');
-            //SQL DELETE
-            $_SESSION['message'] = "Task has been deleted successfully !";
+        global $conn;
+        $id=$_GET['delete'];
+        $sql="DELETE FROM tasks WHERE id=$id";
+        $result=mysqli_query($conn,$sql);
+        header('location: index.php');
+        //SQL DELETE
+        $_SESSION['message'] = "Task has been deleted successfully !";
         
     }
 

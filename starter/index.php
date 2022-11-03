@@ -118,7 +118,7 @@
 				<form action="scripts.php" method="POST" id="form">
 					<div class="modal-body">
 						<div class="form-group">
-							<label for="recipient-name" class="col-form-label" id="Title" >TITLE</label>
+							<label for="recipient-name" class="col-form-label" id="Title"  >TITLE</label>
 							<input type="text" class="form-control" id="recipient-name" name="TITLE" >
 						</div>
 						<h6 class="form-title my-3" id="exampleModalLabel">Type</h6>
